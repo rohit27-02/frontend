@@ -21,7 +21,7 @@ const Home = () => {
       .then((data) => {
         setUser(data[0])
       })
-  }, []);
+  }, [navigate,userInfo.sub]);
   useEffect(() => {
     scrollRef.current.scrollTo(0, 0)
   }, []);
