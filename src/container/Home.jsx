@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { HiMenu } from 'react-icons/hi';
 import { AiFillCloseCircle } from 'react-icons/ai';
-import { Link, Route, Routes } from 'react-router-dom';
+import { Link, useNavigate, Route, Routes } from 'react-router-dom';
 import { Sidebar, UserProfile } from '../components';
 import { client } from '../client';
 import logo from '../assets/logo.png';
@@ -13,7 +13,9 @@ const Home = () => {
   const [user, setUser] = useState(null);
   const scrollRef = useRef(null);
   const userInfo = fetchUser();
+  const navigate = useNavigate();
   useEffect(() => {
+    if(!localStorage.getItem('user')) navigate('/login')
     const query = userQuery(userInfo?.sub);
     client.fetch(query)
       .then((data) => {
@@ -35,7 +37,7 @@ const Home = () => {
             <img src={logo} alt="logo" className='w-28' />
           </Link>
           <Link to={`user-profile/${user?._id}`}>
-            <img src={user?.image} alt="logo" className='w-28' />
+            <img src={user?.image} alt="logo" className='w-20 rounded-lg' />
           </Link>
         </div>
         {ToggleSidebar &&

@@ -10,7 +10,6 @@ import jwt_decode from "jwt-decode";
 const Login = () => {
   const navigate=useNavigate();
   const responseGoogle=(response)=>{
-    console.log(response)
     localStorage.setItem("user",JSON.stringify(response))
     const {name, email, picture,sub} = response
     const doc = {
@@ -52,7 +51,6 @@ clientId={process.env.REACT_APP_GOOGLE_API_TOKEN}>
     responseGoogle(decoded)
   }}
   onError={() => {
-    console.log('Login Failed');
   }}
   useOneTap
 />;

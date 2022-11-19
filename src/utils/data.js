@@ -1,5 +1,9 @@
 export const categories = [
   {
+    name: 'anime',
+    image: 'https://www.shutterstock.com/image-vector/heart-pirate-logo-isolated-vector-1000w-1779118826.jpg',
+  },
+  {
     name: 'cars',
     image: 'https://i.pinimg.com/750x/eb/47/44/eb4744eaa3b3ccd89749fa3470e2b0de.jpg',
   },

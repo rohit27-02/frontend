@@ -12,7 +12,6 @@ const Search = ({ searchTerm }) => {
     if (searchTerm) {
       setloading(true);
       const query = searchQuery(searchTerm.toLowerCase());
-      console.log(query)
       client.fetch(query)
       .then((data)=>{setpins(data);setloading(false);})
     }

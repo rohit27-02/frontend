@@ -11,6 +11,7 @@ const CreatePin = ({ user }) => {
   const [about, setabout] = useState('');
   const [destination, setdestination] = useState('');
   const [loading, setloading] = useState(false);
+  const [loading2, setloading2] = useState(false);
   const [fields, setfields] = useState(null);
   const [category, setcategory] = useState(null);
   const [imageAsset, setimageAsset] = useState(null);
@@ -31,7 +32,7 @@ const CreatePin = ({ user }) => {
           setloading(false);
         })
         .catch((error) => {
-          console.log('Image upload error ', error);
+          window.alert('Image upload error ', error);
         })
     } else {
       setwrongImageType(true);
@@ -39,6 +40,7 @@ const CreatePin = ({ user }) => {
   }
 
   const savePin=()=>{
+    setloading2(true)
     if(title && about && destination && imageAsset?._id && category){
       const doc = { 
         _type: 'pin',
@@ -61,7 +63,7 @@ const CreatePin = ({ user }) => {
     }
     client.create(doc)
     .then(()=>{
-      navigate('/')
+      navigate(`/category/${category}`)
     })
   }
   else{
@@ -164,7 +166,7 @@ const CreatePin = ({ user }) => {
               type='button'
               onClick={savePin}
               className="bg-red-500 text-white font-bold p-2 rounded-full w-28 outline-none"
-              >Save Pin</button>
+              >{loading2 ? "posting..." :"post"}</button>
             </div>
 
           </div>
